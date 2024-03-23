@@ -1,7 +1,7 @@
 # roll
 A command line dice roller to learn Rust.
 
-Usage variations I'd like this to support, in order of potential complexity (tbd). Coverage will be from d2 to d100:
+Usage variations I'd like this to support, in order of potential complexity (tbd). Coverage will be conventional dice, with dn via override, n <= 1000:
 
 ```
 roll
@@ -41,3 +41,6 @@ roll 3d20 --verbose --distinct --template="A [result] from a [dice]!"
 A 12 from a d20!
 A 18 from a d20!
 A 20 from a d20!
+
+roll d777 --allow_unconventional
+777
