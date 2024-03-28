@@ -1,5 +1,6 @@
 use rand::Rng;
 use std::fmt::{self};
+//use std::process;
 
 //use std::path::PathBuf;
 use clap::Parser; //, Subcommand};
@@ -95,6 +96,7 @@ fn main() {
         println!("{sum_of_rolls}");
     }
 
+    std::process::exit(0);
 
 }
 
