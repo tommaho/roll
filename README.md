@@ -11,7 +11,7 @@ Currently supported:
 
 `roll 4d20 -v` will show verbose: the result of each roll and the sum of all rolls
 
-`roll 4d20 -d` will show how each dice was instantiated
+`roll 4d20 -d` will show debug info, including how each dice was instantiated
 
 
 Plans include supporting things like:
