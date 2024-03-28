@@ -1,5 +1,5 @@
 use rand::Rng;
-use std::fmt::{self, write};
+use std::fmt::{self};
 
 //use std::path::PathBuf;
 use clap::Parser; //, Subcommand};
@@ -16,6 +16,8 @@ struct Cli {
     modifier_value: Option<String>,
     #[arg(short, long, action = clap::ArgAction::Count)]
     debug: u8,
+    #[arg(short, long)]
+    verbose: bool,
 }
 
 struct Dice{
@@ -50,9 +52,6 @@ fn main() {
 
     let (rolls, sides) = parse_dice(&roll);
 
-    // I should take rolls and sides, the create a vector of dice
-    // from that
-
     let mut dice_rolls = Vec::new();
     let mut sum_of_rolls = 0;
 
@@ -76,22 +75,27 @@ fn main() {
         0 => {}
         _ => {
             println!("DEBUG: Value for sides: {sides}");
-            println!("DEBUG: Value for num_rolls: {rolls}");
+            println!("DEBUG: Value for rolls: {rolls}");
             for dice in &dice_rolls {
                 println!("DEBUG: {}", dice);
             }
-            //println!("Value for num_sides: {sides}");
             println!("DEBUG: Modifier found: {modifier_operator}");
             println!("DEBUG: Modifier value found: {modifier_value}");
 
         }
     }
 
-    for (index, dice) in dice_rolls.iter().enumerate() {
-        println!("Roll {}: {}", index + 1, dice.roll);
+    if cli.verbose {
+        for (index, dice) in dice_rolls.iter().enumerate() {
+            println!("Roll {}: {}", index + 1, dice.roll);
+        }
+    
+        println!("Sum of rolls: {}", sum_of_rolls);
+    } else {
+        println!("{sum_of_rolls}");
     }
 
-    println!("Sum of rolls: {}", sum_of_rolls);
+
 }
 
 fn parse_dice(dice: &str) -> (u32, u32) {
@@ -99,9 +103,6 @@ fn parse_dice(dice: &str) -> (u32, u32) {
     let parts: Vec<&str> = dice.split('d').collect();
     let rolls = parts[0].parse::<u32>().unwrap_or(1);
     let sides = parts[1].parse::<u32>().unwrap_or(20);
-    
-    // old code
-    // Dice::new(sides)
     
     (rolls, sides)
     
