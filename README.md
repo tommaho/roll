@@ -1,5 +1,5 @@
 # roll
-A command line dice roller to learn Rust.
+A command line dice roller to learn Rust. Currently, the number of sides can be any valid uint. May require a valid conventional side count 2 .. 100.
 
 Currently supported:
 
